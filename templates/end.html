@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%  extends "base.html"  %}
+    {% block content   %} 
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <p> Вы выполнили вариант, вы молодец!</p>
+
+    {% for task in tasks   %}
+
+    <div class="task">
+    <p style="font-size: 20px">id = {{task.id}}</p> 
+
+
+        <p style="font-size: 30px">Условие </p>
+
+    <br>
+
+     <img src= "../static/images/{{ task.task }}"  alt="Упс, походу что то пошло не так, приносим свои извинения">        
+
+     <br>
+     <p style="font-size: 32px;"> Решение </p>
+     <img src="../static/images/{{ task.solution }}">
+     <br>
+
+     <p style="font-size: 32px;">  Ответ:  </p> 
+    <img src="../static/images/{{ task.answer }}">
+
+     </div>
+
+
+
+    {% endfor %}
+
+    <br> <br>
+
+    
+
+
+    {% endblock  %}
+</body>
+</html>  

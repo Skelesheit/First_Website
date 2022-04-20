@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>***Режим разработчика ***</title>
+</head>
+<body>
+
+
+	<p>Работа с бд. Пути к файлу</p>
+
+	<form action="/saninmode" method="post" novalidate>
+        <div>
+            {{ requester.csrf_token }}
+        </div>
+        {% for field in requester if field.name != 'csrf_token' %}  
+            <div>
+
+                {{ field.label(size=50) }} 
+                {{ field() }} <br>
+                {% for error in field.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </form>
+
+		
+
+</body>
+</html>

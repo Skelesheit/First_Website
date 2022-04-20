@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%  extends "base.html"  %}
+    {% block content   %} 
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+    {% for task in tasks   %}
+    
+
+    <div class="task">
+
+        <div class="form-title-little">
+     <span>{{task.type_number}}</span> </div>
+
+    <p style="font-size: 20px">id = {{task.id}}</p> 
+
+    {% if mode == "find"   %}
+
+        <p style="font-size: 30px">Условие: </p>
+
+    {% endif %}
+
+    <br>
+
+     <img src= "../static/images/{{ task.task }}"  alt="Упс, походу что то пошло не так, приносим свои извинения">        
+
+     {% if mode == "find"   %}
+     <br>
+     <p style="font-size: 32px;"> Решение: </p>
+     <img src="../static/images/{{ task.solution }}">
+     <br>
+
+     <p style="font-size: 32px;">  Ответ:  </p> 
+    <img src="../static/images/{{ task.answer }}">
+
+     </div>
+     {% endif %}
+
+
+
+    {% endfor %}
+
+    <br> <br>
+
+    {% if mode == "control"   %}
+
+    <form action="/end/{{var}}" method="POST">
+        <button type="submit" name="find_btn_var" > Закончить вариант 
+            </button>
+
+    </form>
+
+    {% endif %}
+
+
+    {% endblock  %}
+</body>
+</html>  
