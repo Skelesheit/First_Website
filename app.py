@@ -119,8 +119,11 @@ def find_task():
 @app.route("/find_tasks", methods=["POST", "GET"])
 def find_tasks():
     id_tasks = dict()
-    for i in range(1, 20):
-        id_tasks[i] = int(request.form["number_field_" + str(i)])
+    for i in range(1, 18 + 1):
+        req = request.form["number_field_" + str(i)]
+        id_tasks[i] = int(req) if req.isdigit() else 0
+    print(id_tasks)
+
     answer = list(Constructor.find_numbers(id_tasks))
     return render_template("result.html",
                            tasks=answer,
@@ -137,11 +140,10 @@ def create_var():
 @app.route("/save_var/<numbers>", methods=["POST", "GET"])
 def save_var(numbers):
     var = dict()
-    var[1] = request.form.get("field_" + str(1))
-    print(var[1])
     for task_id in range(1, int(numbers) + 1):
         var[task_id] = int(request.form[f"field_{task_id}"])
-    print(var)
+
+
     return render_template("EGEclass.html")
 
 

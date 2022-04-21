@@ -7,9 +7,190 @@
     <title>Title</title>
 </head>
 <body>
+<h1 id="title"> ОГЭ </h1>
+
+<p style="text-align: center;">  Вся информация о ОГЭ</p>
+<p>Для оценивания результатов выполнения работ выпускниками используется общий балл. Максимальный балл за работу в целом – 32. Задания, оцениваемые 1 баллом, считаются выполненными верно, если указан номер верного ответа (в заданиях с выбором ответа), или вписан верный ответ (в заданиях с кратким ответом), или правильно соотнесены объекты двух множеств и записана соответствующая последовательность цифр (в заданиях на установление соответствия).
+
+Задания, оцениваемые в 2 балла, считаются выполненными верно, если обучающийся выбрал правильный путь решения, из письменной записи решения понятен ход его рассуждений, получен верный ответ. В этом случае ему выставляется полный балл, соответствующий данному заданию. Если в решении допущена ошибка, не имеющая принципиального характера и не влияющая на общую правильность хода решения, то участнику выставляется 1 балл.
+</p>
 
 
+<div id = vars_square>
+	 <p>Тренировочные варианты </p>
+	 <br> <br>
+	 <form action="/vars/1" method="post">
+	 	<input type="submit"  name="var_1" 
+	 	value="1 Вариант">
+	 </form>
+	 <form action="/vars/2" method="post">
+	 	<input type="submit"  name="var_2" 
+	 	value="2 Вариант">
+	 </form>
 
-	{% endblock  %}
+	 <form action="/vars/3" method="post">
+	 	<input type="submit"  name="var_3"
+	 	value="3 Вариант">
+	 </form>
+	 <form action="/vars/4" method="post">
+	 	<input type="submit"  name="var_4"
+	 	value="4 Вариант">
+	 </form>
+	 <form action="/vars/5" method="post">
+	 	<input type="submit"  name="var_5"
+	 	value="5 Вариант">
+	 </form>
+	 <form action="/vars/6" method="post">
+	 	<input type="submit"  name="var_6"
+	 	value="6 Вариант">
+	 </form>
+	 <form action="/vars/7" method="post">
+	 	<input type="submit"  name="var_7"
+	 	value="7 Вариант">
+	 </form>
+	 <form action="/vars/8" method="post">
+	 	<input type="submit"  name="var_8"
+	 	value="8 Вариант">
+	 </form>
+	 <form action="/vars/9" method="post">
+	 	<input type="submit"  name="var_9"
+	 	value="9 Вариант">
+	 </form>
+	 <form action="/vars/10" method="post">
+	 	<input type="submit"  name="var_10"
+	 	value="10 Вариант">
+	 </form>
+
+
+</div>
+
+
+<br> <br> <br>
+	<div id = "contain_var_task">   
+		<div class="find_example">
+			<p>Здесь вы можете найти любое задание по id в нашем в каталоге:</p> 
+			<form action="/find_task" method="POST" > 
+
+			<input type="text" name="find_field" id="text-filed_find">
+			<button type="submit" name="find_btn"> Найти 
+			</button>
+			</form>
+
+		
+
+		</div>
+		<br> <br>
+
+		<div class="find_example">
+			<p>Любой пользовательский вариант можно найти в нашем каталоге:</p> 
+			<form action="/find_var" method="POST" > 
+
+			<input type="text" name="find_field_var" id="text_filed_find">
+			<button type="submit" name="find_btn_var"> Найти 
+			</button>
+			</form>
+
+
+			 
+
+		</div>
+
+		<div class="find_example">
+			<p>Вы можете составить свой собственный вариант. Введите количество заданий:</p> 
+			<form action="/create_var" method="POST" > 
+
+			<input type="text" name="create_field_var" id="text-create-var">
+			<button type="submit" name="create_btn_var"> Создать
+			</button>
+			</form>
+			 
+
+		</div>
+	</div>
+
+
+	<p>Вы можете взять случайные задания для тренировки:</p>
+	<form action="/find_tasks" action="POST">
+	<div style="display: flex; width: 200px; "    >
+	<p>1</p><input style="height: 30px;" type="text" name="number_field_1">
+	<input type="submit" name="find_tasks" value="Составить вариант">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>2</p><input style="height: 30px;" type="text" name="number_field_2">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>3</p><input style="height: 30px;" type="text" name="number_field_3">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>4</p><input style="height: 30px;" type="text" name="number_field_4">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>5</p><input style="height: 30px;" type="text" name="number_field_5">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>6</p><input style="height: 30px;" type="text" name="number_field_6">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>7</p><input style="height: 30px;" type="text" name="number_field_7">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>8</p><input style="height: 30px;" type="text" name="number_field_8">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>9</p><input style="height: 30px;" type="text" name="number_field_9">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>10</p><input style="height: 30px;" type="text" name="number_field_10">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>11</p><input style="height: 30px;" type="text" name="number_field_11">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>11</p><input style="height: 30px;" type="text" name="number_field_12">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>12</p><input style="height: 30px;" type="text" name="number_field_13">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>13</p><input style="height: 30px;" type="text" name="number_field_14">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>14</p><input style="height: 30px;" type="text" name="number_field_15">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>15</p><input style="height: 30px;" type="text" name="number_field_16">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>16</p><input style="height: 30px;" type="text" name="number_field_17">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>17</p><input style="height: 30px;" type="text" name="number_field_18">
+	</div>
+	<br>
+	<div style="display: flex; "    >
+	<p>18</p><input style="height: 30px;" type="text" name="number_field_19">
+	</div>
+	</form>
+
+
 </body>
+{% endblock %}
+
 </html>
