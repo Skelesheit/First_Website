@@ -7,6 +7,7 @@
     {% block content   %}
 </head>
 <body>
+    <p>Ваш вариант: {{variant_id}}</p>
     <form action="/save_var/{{numbers}}" method="post">
     {% for index in range(1, numbers + 1) %}
     <div class="Task">

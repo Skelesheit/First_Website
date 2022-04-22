@@ -1,6 +1,7 @@
 from data import db_session
 from data.task import Task
 from data.variant import Variant
+
 from random import shuffle
 import json
 
@@ -11,10 +12,15 @@ class Constructor:
                  end_test_number_oge: int,
                  number_oge: int
                  ):
+        db_session.global_init("db/EGE.db")
+        db_sess = db_session.create_session()
+
         self.END_TEST_NUMBER_EGE = end_test_number_ege
         self.NUMBER_EGE = number_ege
         self.END_TEST_NUMBER_OGE = end_test_number_oge
         self.NUMBER_EGE = number_ege
+        last_var = db_sess.query(Variant).all()[-1]  # из-за этой шутки может всё падать
+        self.number_vars = last_var.id + 1
 
     def create_variant(self):
         variant = list()
@@ -38,8 +44,19 @@ class Constructor:
         request = db_sess.query(Task).filter(Task.id == id).first()
         return request
 
-    def create_variant(self, numbers: list):
-        pass
+    def create_variant(self, numbers: dict) -> None:
+        variant = Variant()
+        db_sess = db_session.create_session()
+        filename = f"var{self.number_vars}.json"
+        variant.filename = filename
+        db_sess.add(variant)
+        db_sess.commit()
+
+        with open(f"db/vars/{filename}", "w") as file:
+            json.dump(numbers, file)
+        print(self.number_vars, ">->")
+        self.number_vars += 1
+        print(self.number_vars, ">->")
 
     def find_var(self, id: int):
         tasks = list()
@@ -53,23 +70,21 @@ class Constructor:
 
         return tasks
 
+    def create_task(self, task, solution, answer, type_number) -> None:
+        example = Task()
+        example.task = task
+        example.solution = solution
+        example.answer = answer
+        example.type_number = type_number
+        db_sess = db_session.create_session()
+        db_sess.add(example)
+        db_sess.commit()
 
-def create_task(task, solution, answer, type_number) -> None:
-    example = Task()
-    example.task = task
-    example.solution = solution
-    example.answer = answer
-    example.type_number = type_number
-    db_sess = db_session.create_session()
-    db_sess.add(example)
-    db_sess.commit()
-
-
-def create_author_variant(examples: list) -> None:
-    standart_var = examples[-1]
-    tasks = dict()
-    for i in range(len(examples) - 1):
-        tasks[i + 1] = examples[i]
-    print(tasks)
-    with open("db/vars/var" + str(standart_var) + ".json", "w") as file:
-        json.dump(tasks, file)
+    def create_author_variant(self, examples: list) -> None:
+        standart_var = examples[-1]
+        tasks = dict()
+        for i in range(len(examples) - 1):
+            tasks[i + 1] = examples[i]
+        print(tasks)
+        with open("db/vars/var" + str(standart_var) + ".json", "w") as file:
+            json.dump(tasks, file)

@@ -9,6 +9,7 @@
 </head>
 <body>
 
+    <p> Ваш вариант: {{ variant_id }} </p>
 
 
     {% for task in tasks   %}
@@ -51,7 +52,7 @@
 
     {% if mode == "control"   %}
 
-    <form action="/end/{{var}}" method="POST">
+    <form action="/end/{{variant_id}}" method="POST">
         <button type="submit" name="find_btn_var" > Закончить вариант 
             </button>
 

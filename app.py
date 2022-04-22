@@ -1,11 +1,10 @@
-import json
-
 from flask import Flask, render_template, request
 
 from data import db_session
+import json
 
 from forms import Developer, CreatorVariant
-from constructor import Constructor, create_task, create_author_variant
+from constructor import Constructor
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "SkinkinKatoonBaton"
@@ -38,10 +37,10 @@ def turn_on_sanin_mod():
         type_number = loader.type_number.data
         repeats = {task, solution, answer}
         if len(repeats) == 3 and type_number > 0:
-            create_task(task=task,
-                        solution=solution,
-                        answer=solution,
-                        type_number=type_number)
+            Constructor.create_task(task=task,
+                                    solution=solution,
+                                    answer=solution,
+                                    type_number=type_number)
         else:
             raise Exception("Повтор имени файла, неккоретная работа!")
 
@@ -63,7 +62,7 @@ def turn_on_rikudo_sanin_mod():
                    creator.task_14.data, creator.task_15.data,
                    creator.task_16.data, creator.task_17.data,
                    creator.task_18.data, creator.number_variant.data]
-        create_author_variant(numbers)
+        Constructor.create_author_variant(numbers)
     return render_template("creator_variant.html", requester=creator)
 
 
@@ -91,7 +90,7 @@ def show_var(index):
         req = Constructor.find_number_id(numbers[task])
         answer.append(req)
     return render_template("result.html", tasks=answer,
-                           mode="control", var=index)
+                           mode="control", variant_id=index)
 
 
 @app.route("/end/<number_var>", methods=["POST", "GET"])
@@ -134,7 +133,8 @@ def find_tasks():
 def create_var():
     numbers = int(request.form["create_field_var"])
     return render_template("create_new_var.html",
-                           numbers=numbers)
+                           numbers=numbers,
+                           variant_id=Constructor.number_vars)
 
 
 @app.route("/save_var/<numbers>", methods=["POST", "GET"])
@@ -142,7 +142,7 @@ def save_var(numbers):
     var = dict()
     for task_id in range(1, int(numbers) + 1):
         var[task_id] = int(request.form[f"field_{task_id}"])
-
+    Constructor.create_variant(var)
 
     return render_template("EGEclass.html")
 
@@ -154,12 +154,11 @@ def find_var():
     return render_template("result.html",
                            tasks=tasks,
                            mode="control",
-                           var=variant_id)
+                           variant_id=variant_id)
 
 
 def main():
     db_session.global_init("db/EGE.db")
-    # create_test()
     app.run(debug=True)
 
 
