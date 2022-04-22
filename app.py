@@ -121,7 +121,6 @@ def find_tasks():
     for i in range(1, 18 + 1):
         req = request.form["number_field_" + str(i)]
         id_tasks[i] = int(req) if req.isdigit() else 0
-    print(id_tasks)
 
     answer = list(Constructor.find_numbers(id_tasks))
     return render_template("result.html",
